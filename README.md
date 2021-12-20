@@ -27,11 +27,11 @@ print(criterion(x1, x2))
 
 We provide some sample pre-trained models. 
 
-- MSRAction3D: Nway = 10, topkk = 3, 500 episodes
-- 3DActionPairs: Nway = 6, topkk = 2, 200 episodes
-- UWA3DActivity: Nway = 15, topkk = 5, 150 episodes
+- MSRAction3D: Nway = 10, topkk = 3
+- 3DActionPairs: Nway = 6, topkk = 2
+- UWA3DActivity: Nway = 15, topkk = 5
 
-All evaluation uses the same setting: adam optimizer, video block length = 8 and overlap frame per block = 4, degrees for the SSGC is 6, viewing angles = [-pi / 180, 0, pi / 180], without the use of transformer.
+All evaluation uses the same setting: adam optimizer, video block length = 8 and overlap frame per block = 4, degrees for the SSGC is 6, alpha for SSGC is set to 0.7, viewing angles = [-pi / 180, 0, pi / 180], without the use of transformer.
 
 For more details, please refer to our JEANIE paper.
 
