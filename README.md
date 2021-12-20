@@ -3,15 +3,18 @@ Implementation of JEANIE
 
 ## 1. The use of JEANIE
 
-The following sample codes show how to use our proposed JEANIE for sequence alignment in 6D:
+The following sample codes show how to use our proposed JEANIE for sequence alignment in 6D (similar to the use of softDTW):
 
 ```
 from jeanie import SoftDTW
 import torch
 
+# each feature is in the shape of
+# [batchsize, temp, view1, view2, featdim]
 x1 = torch.rand(1, 3, 4, 4, 10)
 x2 = torch.rand(1, 5, 1, 1, 10)
 
+# similar to the use of any losses
 criterion = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
 print(criterion(x1, x2))
 ```
