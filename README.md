@@ -12,8 +12,8 @@ import torch
 x1 = torch.rand(1, 3, 4, 4, 10)
 x2 = torch.rand(1, 5, 1, 1, 10)
 
-cc = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
-print(cc(x1, x2))
+criterion = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
+print(criterion(x1, x2))
 ```
 
 ## Pre-trained models for smaller datasets
@@ -29,3 +29,6 @@ All evaluation uses the same setting: adam optimizer, video block length = 8 and
 \*_jeanie.pt model uses the loss:
 
 $`l(\vd^{+}\!,\vd^{-}) = (max(0, \mu(\vd^{+})-\detach(\mu(\topminb(\vd^{+})))) + max(0, \detach(\mu(\topmaxbb(\vd^{-})))-\mu(\vd^{-})))^2`$
+
+
+\sum_{\forall i}{x_i^{2}} 
