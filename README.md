@@ -43,7 +43,7 @@ Note that M and S in the table represents the frame counts per temporal block an
 
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity |
 | ------------- | :---: | :---: | :---: |
-| softDTW (temp. align. only)  |  79.24 |  79.44 |  40.35 |
+| soft-DTW (temp. align. only)  |  79.24 |  79.44 |  40.35 |
 | Our JEANIE (M = 8, S = 4)  |   |   |   |
 | Our JEANIE (M = 8, S = 4, more views)  |   |   |   |
 | Our JEANIE (M = 8, S = 2) |   |   |   |
