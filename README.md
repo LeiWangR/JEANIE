@@ -1,2 +1,2 @@
-# jeanie
+# JEANIE
 Implementation of JEANIE
