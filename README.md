@@ -35,7 +35,7 @@ For more details, please refer to our JEANIE paper.
 The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1 degrees.
 
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity |
-| ------------- | ------------- | ------------- | ------------- |
+| ------------- | :---: | :---: | :---: |
 | softDTW (temp. align. only)  |  79.24 |  79.44 |  40.35 |
 | Our JEANIE  |   |   |   |
 
