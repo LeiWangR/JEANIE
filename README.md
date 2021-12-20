@@ -34,6 +34,6 @@ For more details, please refer to our JEANIE paper.
 
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity |
 | ------------- | ------------- | ------------- | ------------- |
-| softDTW (temp. align. only)  |   |   |   |
+| softDTW (temp. align. only)  |  79.24 |  79.44 |  40.35 |
 | Our JEANIE  |   |   |   |
 
