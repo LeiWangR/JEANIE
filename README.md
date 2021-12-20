@@ -26,9 +26,7 @@ We provide some sample pre-trained models.
 
 All evaluation uses the same setting: adam optimizer, video block length = 8 and overlap frame per block = 4, degrees for the SSGC is 6, viewing angles = [-pi / 180, 0, pi / 180], without the use of transformer.
 
-\*_jeanie.pt model uses the loss:
-
+\*_jeanie.pt model uses the loss (refer to our paper for more details):
 
 <img src="https://render.githubusercontent.com/render/math?math=l(d^{+},d^{-}) = \max(0, \mu(d^{+})-\text{Detach}(\mu(\text{TopMin}_\beta(d^{+})))) + \max(0, \text{Detach}(\mu(\text{TopMax}_{NZ\beta}(d^{-})))-\mu(d^{-}))">
 
-![formula](https://render.githubusercontent.com/render/math?math=l(d^{+},d^{-}) = \max(0, \mu(d^{+})-\text{Detach}(\mu(\text{TopMin}_\beta(d^{+})))) + \max(0, \text{Detach}(\mu(\text{TopMax}_{NZ\beta}(d^{-})))-\mu(d^{-})))
