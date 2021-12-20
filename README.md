@@ -1,7 +1,7 @@
 # JEANIE
 Implementation of JEANIE
 
-## The use of JEANIE
+## 1. The use of JEANIE
 
 The following sample codes show how to use our proposed JEANIE for sequence alignment in 6D:
 
@@ -16,7 +16,9 @@ criterion = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
 print(criterion(x1, x2))
 ```
 
-## Pre-trained models for smaller datasets
+## 2. Pre-trained models for smaller datasets
+
+### 2.1 Some descriptions
 
 We provide some sample pre-trained models. 
 
@@ -27,3 +29,11 @@ We provide some sample pre-trained models.
 All evaluation uses the same setting: adam optimizer, video block length = 8 and overlap frame per block = 4, degrees for the SSGC is 6, viewing angles = [-pi / 180, 0, pi / 180], without the use of transformer.
 
 For more details, please refer to our JEANIE paper.
+
+### 2.2 Some performance on sample datasets
+
+|   | MSRAction3D | 3DActionPairs | UWA3DActivity |
+| ------------- | ------------- | ------------- | ------------- |
+| softDTW (temp. align. only)  |   |   |   |
+| Our JEANIE  |   |   |   |
+
