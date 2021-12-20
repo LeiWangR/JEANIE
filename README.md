@@ -42,7 +42,11 @@ The experimental results reported here are without the use of hyperopt, and we s
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity |
 | ------------- | :---: | :---: | :---: |
 | softDTW (temp. align. only)  |  79.24 |  79.44 |  40.35 |
-| Our JEANIE  |   |   |   |
+| Our JEANIE (M=8,S=4)  |   |   |   |
+| Our JEANIE (M=8,S=6) |   |   |   |
+| Our JEANIE (M=10,S=5) |   |   |   |
+| Our JEANIE (M=10,S=6) |   |   |   |
+| Our JEANIE (M=10,S=8) |   |   |   |
 
 #### Acknowledgement
 Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
