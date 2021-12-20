@@ -32,3 +32,5 @@ $`l(\vd^{+}\!,\vd^{-}) = (max(0, \mu(\vd^{+})-\detach(\mu(\topminb(\vd^{+})))) +
 
 
 \sum_{\forall i}{x_i^{2}} 
+
+<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
