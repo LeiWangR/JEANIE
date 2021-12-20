@@ -5,7 +5,7 @@ Implementation of JEANIE
 
 The following sample codes show how to use our proposed JEANIE for sequence alignment in 6D (similar to the use of softDTW):
 
-Note that our JEANIE implementation based on [softDTW] https://github.com/Maghoumi/pytorch-softdtw-cuda supports the pruning for difference lengths of features (the use of bandwidth setup).
+Note that our JEANIE implementation based on [softDTW](https://github.com/Maghoumi/pytorch-softdtw-cuda) supports the pruning for difference lengths of features (the use of bandwidth setup).
 
 ```
 from jeanie import SoftDTW
