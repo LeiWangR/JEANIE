@@ -21,7 +21,7 @@ criterion = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
 print(criterion(x1, x2))
 ```
 
-## 2. Pre-trained models for smaller datasets
+## 2. Pre-trained models for smaller datasets (on CPU)
 
 ### 2.1 Some descriptions
 
