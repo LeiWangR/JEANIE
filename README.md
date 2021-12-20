@@ -42,3 +42,5 @@ The experimental results reported here are without the use of hyperopt, and we s
 | softDTW (temp. align. only)  |  79.24 |  79.44 |  40.35 |
 | Our JEANIE  |   |   |   |
 
+#### Acknowledgement
+Thanks to the implementation of [softDTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
