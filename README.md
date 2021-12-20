@@ -28,9 +28,7 @@ All evaluation uses the same setting: adam optimizer, video block length = 8 and
 
 \*_jeanie.pt model uses the loss:
 
-$`l(\vd^{+}\!,\vd^{-}) = (max(0, \mu(\vd^{+})-\detach(\mu(\topminb(\vd^{+})))) + max(0, \detach(\mu(\topmaxbb(\vd^{-})))-\mu(\vd^{-})))^2`$
-
 
 \sum_{\forall i}{x_i^{2}} 
 
-<img src="https://render.githubusercontent.com/render/math?math=l(\vd^{+}\!,\vd^{-}) = (max(0, \mu(\vd^{+})-\detach(\mu(\topminb(\vd^{+})))) + max(0, \detach(\mu(\topmaxbb(\vd^{-})))-\mu(\vd^{-})))^2">
+<img src="https://render.githubusercontent.com/render/math?math=l(d^{+},d^{-}) = (max(0, \mu(d^{+})-\detach(\mu(\topminb(d^{+})))) + max(0, \detach(\mu(\topmaxbb(d^{-})))-\mu(d^{-})))^2">
