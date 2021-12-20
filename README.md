@@ -37,16 +37,19 @@ For more details, please refer to our JEANIE paper.
 
 ### 2.2 Some performance on sample datasets
 
-The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1 degrees.
+The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1.
+
+Note that M and S in the table represents the frame counts per temporal block and stride step, respectively. For more views mentioned in the table, we set the viewing angles between -2 and 2.
 
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity |
 | ------------- | :---: | :---: | :---: |
 | softDTW (temp. align. only)  |  79.24 |  79.44 |  40.35 |
-| Our JEANIE (M=8,S=4)  |   |   |   |
-| Our JEANIE (M=8,S=6) |   |   |   |
-| Our JEANIE (M=10,S=5) |   |   |   |
-| Our JEANIE (M=10,S=6) |   |   |   |
-| Our JEANIE (M=10,S=8) |   |   |   |
+| Our JEANIE (M = 8, S = 4)  |   |   |   |
+| Our JEANIE (M = 8, S = 4, more views)  |   |   |   |
+| Our JEANIE (M = 8, S = 2) |   |   |   |
+| Our JEANIE (M = 10, S = 5) |   |   |   |
+| Our JEANIE (M = 10, S = 4) |   |   |   |
+| Our JEANIE (M = 10, S = 2) |   |   |   |
 
 #### Acknowledgement
 Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
