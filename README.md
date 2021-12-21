@@ -21,9 +21,15 @@ criterion = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
 print(criterion(x1, x2))
 ```
 
-## 2. Smaller datasets in hdf5 format
+## 2. Datasets and evalution protocols
+
+### 2.1 Smaller datasets in hdf5 format
 
 We provide smaller datasets in the data folder which you can use to reproduce the results in the following sections.
+
+### 2.2 Evaluation protocols for smaller datasets
+
+We also provide sample evaluation protocols for one-shot learning on smaller datasets.
 
 ## 3. Pre-trained models for smaller datasets (on CPU)
 
