@@ -25,11 +25,11 @@ print(criterion(x1, x2))
 
 ### 2.1 Smaller datasets in hdf5 format
 
-We provide smaller datasets in the data folder which you can use to reproduce the results in the following sections.
+We provide smaller datasets in the data/ folder which you can use to reproduce the results in the following sections.
 
 ### 2.2 Evaluation protocols for smaller datasets
 
-We also provide sample evaluation protocols for one-shot learning on smaller datasets. We provide the *exampler* for evaluation (similar to NTU-120 one-shot protocol).
+We also provide sample evaluation protocols for one-shot learning on smaller datasets. We provide the *exampler* for evaluation (similar to NTU-120 one-shot protocol, refer to trtesplit folder for more details).
 
 ## 3. Pre-trained models for smaller datasets (on CPU)
 
