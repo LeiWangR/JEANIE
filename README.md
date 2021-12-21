@@ -53,7 +53,7 @@ Note that M and S in the table represents the frame counts per temporal block an
 
 The use of soft-DTW is to only align the temporal information, whereas the use of JEANIE is to jointly align the temporal and viewpoint information. More details please refer to our paper.
 
-|   | MSRAction3D | 3DActionPairs | UWA3DActivity | Pre-trained Model|
+|   | MSRAction3D | 3DActionPairs | UWA3DActivity | Model provided|
 | ------------- | :---: | :---: | :---: | :---: |
 | soft-DTW (M = 2, S = 1)  |  79.24 |  79.44 |  40.35 | Yes |
 | soft-DTW (M = 8, S = 4)  | 72.66  |  77.78 |  38.60 | |
