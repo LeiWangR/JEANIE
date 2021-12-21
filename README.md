@@ -43,18 +43,18 @@ Note that M and S in the table represents the frame counts per temporal block an
 
 The use of soft-DTW is to only align the temporal information, whereas the use of JEANIE is to jointly align the temporal and viewpoint information. More details please refer to our paper.
 
-|   | MSRAction3D | 3DActionPairs | UWA3DActivity |
-| ------------- | :---: | :---: | :---: |
-| soft-DTW (M = 2, S = 1) (*)  |  79.24 |  79.44 |  40.35 |
-| soft-DTW (M = 8, S = 4)  | 71.63  | 72.66  |  33.63 |
-| Our JEANIE (M = 8, S = 4)  |  71.97 |  74.44 |  40.35 |
-| Our JEANIE (M = 8, S = 4, more views)  |  72.66 |  73.89 |  37.43 |
-| Our JEANIE (M = 8, S = 2) | 72.66  |  77.78 | 40.06  |
-| Our JEANIE (M = 10, S = 5) |  68.17 |  80.00 |  38.30 |
-| Our JEANIE (M = 10, S = 4) |  69.20 |  79.44 |  38.89 |
-| Our JEANIE (M = 10, S = 2) |  70.93 |  78.33 |  40.94 |
-| Our JEANIE (M = 12, S = 2) |  - |  81.67 |  - |
-| Our JEANIE (M = 15, S = 5) |  - |  82.22 | -  |
+|   | MSRAction3D | 3DActionPairs | UWA3DActivity | Pre-trained Model|
+| ------------- | :---: | :---: | :---: | :---: |
+| soft-DTW (M = 2, S = 1)  |  79.24 |  79.44 |  40.35 | Yes |
+| soft-DTW (M = 8, S = 4)  | 71.63  | 72.66  |  33.63 | |
+| Our JEANIE (M = 8, S = 4)  |  71.97 |  74.44 |  40.35 | |
+| Our JEANIE (M = 8, S = 4, more views)  |  72.66 |  73.89 |  37.43 | |
+| Our JEANIE (M = 8, S = 2) | 72.66  |  77.78 | 40.06  | |
+| Our JEANIE (M = 10, S = 5) |  68.17 |  80.00 |  38.30 | |
+| Our JEANIE (M = 10, S = 4) |  69.20 |  79.44 |  38.89 | |
+| Our JEANIE (M = 10, S = 2) |  70.93 |  78.33 |  40.94 | |
+| Our JEANIE (M = 12, S = 2) |  - |  81.67 |  - | |
+| Our JEANIE (M = 15, S = 5) |  - |  82.22 | -  | |
 
 #### Acknowledgment
 Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
