@@ -45,7 +45,7 @@ All evaluation uses the same setting: adam optimizer, video block length = 8 and
 
 For more details, please refer to our JEANIE paper.
 
-### 3.2 Some performance on sample datasets (1-shot only)
+### 3.2 One-shot performance on sample datasets
 
 **The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1.**
 
