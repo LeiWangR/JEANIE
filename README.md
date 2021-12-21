@@ -51,5 +51,5 @@ Note that M and S in the table represents the frame counts per temporal block an
 | Our JEANIE (M = 10, S = 4) |   |   |   |
 | Our JEANIE (M = 10, S = 2) |   |   |   |
 
-#### Acknowledgement
+#### Acknowledgment
 Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
