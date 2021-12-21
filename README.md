@@ -41,7 +41,7 @@ For more details, please refer to our JEANIE paper.
 
 Note that M and S in the table represents the frame counts per temporal block and stride step, respectively. For more views mentioned in the table, we set the viewing angles between -2 and 2.
 
-The use of soft-DTW is to only align the temporal information, whereas the use of JEANIE is to jointly align the temporal and viewpoint information.
+The use of soft-DTW is to only align the temporal information, whereas the use of JEANIE is to jointly align the temporal and viewpoint information. More details please refer to our paper.
 
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity |
 | ------------- | :---: | :---: | :---: |
