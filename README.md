@@ -21,9 +21,13 @@ criterion = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
 print(criterion(x1, x2))
 ```
 
-## 2. Pre-trained models for smaller datasets (on CPU)
+## 2. Smaller datasets in hdf5 format
 
-### 2.1 Some descriptions
+We provide smaller datasets in the data folder which you can use to reproduce the results in the following sections.
+
+## 3. Pre-trained models for smaller datasets (on CPU)
+
+### 3.1 Some descriptions
 
 We provide some sample pre-trained models. 
 
@@ -35,7 +39,7 @@ All evaluation uses the same setting: adam optimizer, video block length = 8 and
 
 For more details, please refer to our JEANIE paper.
 
-### 2.2 Some performance on sample datasets (1-shot only)
+### 3.2 Some performance on sample datasets (1-shot only)
 
 **The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1.**
 
@@ -56,5 +60,5 @@ The use of soft-DTW is to only align the temporal information, whereas the use o
 | Our JEANIE (M = 12, S = 2) |  - |  81.67 |  - | |
 | Our JEANIE (M = 15, S = 5) |  - |  82.22 | -  | |
 
-#### Acknowledgment
+#### Acknowledgement
 Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
