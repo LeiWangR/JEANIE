@@ -29,7 +29,7 @@ We provide smaller datasets in the data/ folder which you can use to reproduce t
 
 ### 2.2 Evaluation protocols for smaller datasets
 
-We also provide sample evaluation protocols for one-shot learning on smaller datasets. We provide the *exampler* for evaluation (similar to NTU-120 one-shot protocol, refer to trtesplit folder for more details).
+We also provide sample evaluation protocols for one-shot learning on smaller datasets. We provide the *exampler* for evaluation (similar to NTU-120 one-shot protocol, refer to trtesplit/ folder for more details).
 
 ## 3. Pre-trained models for smaller datasets (on CPU)
 
