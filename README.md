@@ -56,7 +56,7 @@ The use of soft-DTW is to only align the temporal information, whereas the use o
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity | Pre-trained Model|
 | ------------- | :---: | :---: | :---: | :---: |
 | soft-DTW (M = 2, S = 1)  |  79.24 |  79.44 |  40.35 | Yes |
-| soft-DTW (M = 8, S = 4)  | 71.63  | 72.66  |  33.63 | |
+| soft-DTW (M = 8, S = 4)  | 72.66  |  77.78 |  38.60 | |
 | Our JEANIE (M = 8, S = 4)  |  71.97 |  74.44 |  40.35 | |
 | Our JEANIE (M = 8, S = 4, more views)  |  72.66 |  73.89 |  37.43 | |
 | Our JEANIE (M = 8, S = 2) | 72.66  |  77.78 | 40.06  | |
