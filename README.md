@@ -35,11 +35,15 @@ All evaluation uses the same setting: adam optimizer, video block length = 8 and
 
 For more details, please refer to our JEANIE paper.
 
-### 2.2 Some performance on sample datasets
+### 2.2 Some performance on sample datasets (1-shot only)
 
 **The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1.**
 
 Note that M and S in the table represents the frame counts per temporal block and stride step, respectively. For more views mentioned in the table, we set the viewing angles between -2 and 2.
+
+- MSRAction3D: 10 way
+- 3DActionPairs: 6 way
+- UWA3DActivity: 15 way
 
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity |
 | ------------- | :---: | :---: | :---: |
@@ -50,6 +54,8 @@ Note that M and S in the table represents the frame counts per temporal block an
 | Our JEANIE (M = 10, S = 5) |  68.17 |  80.00 |  38.30 |
 | Our JEANIE (M = 10, S = 4) |  69.20 |  79.44 |  38.89 |
 | Our JEANIE (M = 10, S = 2) |  70.93 |  78.33 |  40.94 |
+| Our JEANIE (M = 12, S = 2) |  - |  81.67 |  - |
+| Our JEANIE (M = 15, S = 5) |  - |  82.22 | -  |
 
 #### Acknowledgment
 Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
