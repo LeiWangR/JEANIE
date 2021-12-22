@@ -1,6 +1,11 @@
 # JEANIE
 Implementation of JEANIE
 
+## 0. Environment setup
+
+- Create the environment from the *myenv.yml* file:  `conda env create -f myenv.yml`
+- Activate the new environment via: `conda activate myenv`
+
 ## 1. The use of JEANIE
 
 The following sample codes show how to use our proposed JEANIE for sequence alignment in 6D (similar to the use of soft-DTW):
@@ -31,9 +36,16 @@ We provide smaller datasets in the data/ folder which you can use to reproduce t
 
 We also provide sample evaluation protocols for one-shot learning on smaller datasets. We provide the *exampler* for evaluation (similar to NTU-120 one-shot protocol, refer to trtesplit/ folder for more details).
 
-## 3. Pre-trained models for smaller datasets (on CPU)
+## 3. Run the sample codes on smaller datasets (on CPU)
 
-### 3.1 Some descriptions
+To run the temporal alignment (the use of soft-DTW) only: `python3 main.py --Nway 10 --topkk 3 --dataset MSRAction3D`
+
+To run the JEANIE: `python3 mainJEANIE.py --Nway 10 --topkk 3 --dataset MSRAction3D`
+
+
+## 4. Pre-trained models for smaller datasets (on CPU)
+
+### 4.1 Some descriptions
 
 We provide some sample pre-trained models. 
 
@@ -45,7 +57,7 @@ All evaluation uses the same setting: adam optimizer, video block length = 8 and
 
 For more details, please refer to our JEANIE paper.
 
-### 3.2 One-shot performance on sample datasets
+### 4.2 One-shot performance on sample datasets
 
 **The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1.**
 
