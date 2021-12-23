@@ -69,9 +69,9 @@ The use of soft-DTW is to only align the temporal information, whereas the use o
 | ------------- | :---: | :---: | :---: | :---: |
 | soft-DTW (M = 2, S = 1)  |  79.24 |  79.44 |  40.35 | Yes |
 | soft-DTW (M = 8, S = 4)  | 72.66  |  77.78 |  42.40 | Yes |
-| Our JEANIE (M = 8, S = 4)  |  71.97 (73.70) |  74.44 (76.11) |  40.35 (41.81) | Yes |
+| Our JEANIE (M = 8, S = 4)  |  71.97 (73.70) |  74.44 (76.11) |  40.35 (42.11) | Yes |
 | Our JEANIE (M = 8, S = 4, more views)  |  72.66 |  73.89 |  37.43 | No |
-| Our JEANIE (M = 8, S = 2) | 72.66 () |  77.78 () | 40.06 () | Yes |
+| Our JEANIE (M = 8, S = 2) | 72.66 (72.32) |  77.78 (78.33) | 40.06 (34.21) | Yes |
 | Our JEANIE (M = 10, S = 5) |  68.17 |  80.00 |  38.30 | No |
 | Our JEANIE (M = 10, S = 4) |  69.20 |  79.44 |  38.89 | No |
 | Our JEANIE (M = 10, S = 2) |  70.93 |  78.33 |  40.94 | Yes|
