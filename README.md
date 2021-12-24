@@ -59,7 +59,7 @@ For more details, please refer to our JEANIE paper.
 
 ### 4.2 One-shot performance on sample datasets
 
-**The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1.**
+**The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1. We use Euler angles for the viewpoint augmentation in the following table.**
 
 Note that M and S in the table represents the frame counts per temporal block and stride step, respectively. For more views mentioned in the table, we set the viewing angles between -2 and 2.
 
