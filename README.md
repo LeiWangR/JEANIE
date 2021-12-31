@@ -1,7 +1,7 @@
 # JEANIE
 Implementation of JEANIE
 
-## 0. Environment setup
+## 0. Environmental setup
 
 - Create the environment from the *myenv.yml* file:  `conda env create -f myenv.yml`
 - Activate the new environment via: `conda activate myenv`
