@@ -4,7 +4,13 @@ import torch.nn.functional as F
 
 from model import *
 
-
+class Dictlist(dict):
+    def __setitem__(self, key, value):
+        try:
+            self[key]
+        except KeyError:
+            super(Dictlist, self).__setitem__(key, [])
+        self[key].append(value)
 
 
 
@@ -30,6 +36,9 @@ def test(dataloader_exampler, dataloader_te, model, torso, adj, degree, batch, n
         batch_output_exampler, _ = model(test_data_exampler, label_exampler_size, adj, degree, num_class, alpha, device)
         correct_num = 0
         total_num = 0
+        
+        d = Dictlist()
+        
         for i_batch, sample_batched in enumerate(dataloader_te):
             test_data = sample_batched[0]
             te_label = sample_batched[1]
@@ -46,16 +55,18 @@ def test(dataloader_exampler, dataloader_te, model, torso, adj, degree, batch, n
                 # [block, num_class]
                 label_q = te_label[batch_idx].item()
 
-                block_pred_q = torch.unsqueeze(znormalize(batch_output_q[batch_idx]), 0).to(device)
-                # block_pred_q = torch.unsqueeze(batch_output_q[batch_idx], 0).to(device)
+                # block_pred_q = torch.unsqueeze(znormalize(batch_output_q[batch_idx]), 0).to(device)
+                block_pred_q = torch.unsqueeze(batch_output_q[batch_idx], 0).to(device)
                 # block_pred_q = torch.unsqueeze(F.normalize(batch_output_q[batch_idx], p=2, dim=1), 0)
+                
+                d[str(label_q)] = block_pred_q
 
                 M_loss = torch.zeros((label_exampler_size))
 
                 for batch_jdx in range(label_exampler_size):
                     label_ex = label_exampler[batch_jdx].item()
-                    block_pred_exampler = torch.unsqueeze(znormalize(batch_output_exampler[batch_jdx]), 0).to(device)
-                    # block_pred_exampler = torch.unsqueeze(batch_output_exampler[batch_jdx], 0).to(device)
+                    # block_pred_exampler = torch.unsqueeze(znormalize(batch_output_exampler[batch_jdx]), 0).to(device)
+                    block_pred_exampler = torch.unsqueeze(batch_output_exampler[batch_jdx], 0).to(device)
                     # block_pred_exampler = torch.unsqueeze(F.normalize(batch_output_exampler[batch_jdx], p=2, dim=1), 0)
 
                     n = block_pred_exampler.shape[1]
@@ -71,6 +82,7 @@ def test(dataloader_exampler, dataloader_te, model, torso, adj, degree, batch, n
                     if label_q == label_ex and label_exampler[torch.argmin(M_loss)] == label_q:
                         correct_num = correct_num + 1
             acc = correct_num / total_num
+            torch.save(d, "key-value-features-2.pth")
             print('test batch ID: {} | accuracy: {:.4f}'.format(batch_idx + 1, acc))
 
     return acc  # correct_num, total_num

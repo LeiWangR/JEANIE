@@ -168,9 +168,9 @@ class ToTensor(object):
 
 def my_collate(batch):
     # define frame per block
-    frame_per_block = 8
+    frame_per_block = 2
     # define overlap frames
-    overlap_frame = 4
+    overlap_frame = 1
     data = []
 
     label = [item['label'] for item in batch]

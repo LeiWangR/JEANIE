@@ -67,10 +67,10 @@ def train(model, tr_list, data_dir, dataset_name, npy_file_tr, torso, SUPPORT_NU
 
             # block_pred_s = torch.unsqueeze(F.normalize(batch_output_s[batch_idx], p=2, dim=1), 0)
             # block_pred_q = torch.unsqueeze(F.normalize(batch_output_q[batch_jdx], p=2, dim=1), 0)
-            # block_pred_s = torch.unsqueeze(batch_output_s[batch_idx], 0)
-            # block_pred_q = torch.unsqueeze(batch_output_q[batch_jdx], 0)
-            block_pred_s = torch.unsqueeze(znormalize(batch_output_s[batch_idx]), 0).to(device)
-            block_pred_q = torch.unsqueeze(znormalize(batch_output_q[batch_jdx]), 0).to(device)
+            block_pred_s = torch.unsqueeze(batch_output_s[batch_idx], 0)
+            block_pred_q = torch.unsqueeze(batch_output_q[batch_jdx], 0)
+#             block_pred_s = torch.unsqueeze(znormalize(batch_output_s[batch_idx]), 0).to(device)
+#             block_pred_q = torch.unsqueeze(znormalize(batch_output_q[batch_jdx]), 0).to(device)
 
             n = block_pred_s.shape[1]
             p = block_pred_q.shape[1]
