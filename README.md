@@ -1,5 +1,4 @@
 # JEANIE
-Implementation of JEANIE
 
 ## 0. Environmental setup
 
