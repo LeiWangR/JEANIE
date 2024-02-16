@@ -67,13 +67,14 @@ The use of soft-DTW is to only align the temporal information, whereas the use o
 
 |   | MSRAction3D | 3DActionPairs | UWA3DActivity | Model provided|
 | ------------- | :---: | :---: | :---: | :---: |
-| soft-DTW (M = 2, S = 1)  |  79.24 |  79.44 |  40.35 | Yes |
+| soft-DTW (M = 2, S = 1)  |  77.51 |  79.44 |  40.35 | Yes |
 | soft-DTW (M = 8, S = 4)  | 72.66  |  77.78 |  42.40 | Yes |
-| Our JEANIE (M = 8, S = 4)  |  73.70 |  82.78 |  42.11 | Yes |
-| Our JEANIE (M = 8, S = 2) | 75.78 |  78.33 | 40.94 | Yes |
-| Our JEANIE (M = 10, S = 2) |  - |  - |  43.57 | Yes|
-| Our JEANIE (M = 12, S = 2) |  - |  81.67 |  - | No |
-| Our JEANIE (M = 15, S = 5) |  - |  82.22 | -  | Yes|
+| JEANIE (M = 2, S = 1)  | 80.28 | - | - | Yes|
+| JEANIE (M = 8, S = 4)  |  73.70 |  82.78 |  42.11 | Yes |
+| JEANIE (M = 8, S = 2) | 75.78 |  78.33 | 40.94 | Yes |
+| JEANIE (M = 10, S = 2) |  - |  - |  43.57 | Yes|
+| JEANIE (M = 12, S = 2) |  - |  81.67 |  - | No |
+| JEANIE (M = 15, S = 5) |  - |  82.22 | -  | Yes|
 
 #### Acknowledgement
 Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
