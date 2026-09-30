@@ -24,8 +24,6 @@ fvm_1d_from_cost(...)
 fvm_2d_from_cost(...)
 ```
 
-*Note: The code has been refactored and optimized with GPT for clarity, readability, maintainability, and ease of reuse.*
-
 ---
 
 ## JEANIE
@@ -116,7 +114,7 @@ C[t,u] = SoftMin_gamma(viewpoint_costs[t,u])
 
 and then runs soft-DTW on `C`.
 
-This deliberately allows viewpoint selection to change freely from one
+This allows viewpoint selection to change freely from one
 temporal alignment step to another.
 
 The repository provides explicit wrappers for:
