@@ -1,79 +1,373 @@
 # JEANIE
 
-## 0. Environmental setup
+---
 
-- Create the environment from the *myenv.yml* file:  `conda env create -f myenv.yml`
-- Activate the new environment via: `conda activate myenv`
+## What is included
 
-## 1. The use of JEANIE
-
-The following sample codes show how to use our proposed JEANIE for sequence alignment in 6D (similar to the use of soft-DTW):
-
-Note that our JEANIE implementation based on [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda) supports the pruning for difference lengths of features (the use of bandwidth setup).
-
-```
-from jeanie import SoftDTW
-import torch
-
-# each feature is in the shape of
-# [batchsize, temp, view1, view2, featdim]
-x1 = torch.rand(1, 3, 4, 4, 10)
-x2 = torch.rand(1, 5, 1, 1, 10)
-
-# similar to the use of any losses
-criterion = SoftDTW(use_cuda=False, gamma=0.01, normalize=True, bandwidth = 1)
-print(criterion(x1, x2))
+```text
+jeanie_reference/
+├── jeanie/
+│   ├── __init__.py
+│   ├── alignment.py       # JEANIE + soft-DTW
+│   ├── fvm.py             # FVM
+│   └── distances.py       # base-distance helpers
+├── examples/
+│   └── mini_demo.py       # very small runnable example
+├── tests/
+│   └── test_core.py       # correctness + gradient tests
+├── README.md
+└── requirements.txt
 ```
 
-## 2. Datasets and evalution protocols
+There are four main public entry points:
 
-### 2.1 Smaller datasets in hdf5 format
+```python
+jeanie_1d_from_cost(...)
+jeanie_2d_from_cost(...)
+fvm_1d_from_cost(...)
+fvm_2d_from_cost(...)
+```
 
-We provide smaller datasets in the data/ folder which you can use to reproduce the results in the following sections.
+---
 
-### 2.2 Evaluation protocols for smaller datasets
+## JEANIE
 
-We also provide sample evaluation protocols for one-shot learning on smaller datasets. We provide the *exampler* for evaluation (similar to NTU-120 one-shot protocol, refer to trtesplit/ folder for more details).
+We first define the complete viewpoint-aware distance tensor in
+Eq. (12), then give the concrete dynamic program in Algorithm 1.
 
-## 3. Run the sample codes on smaller datasets (on CPU)
+For the single-viewpoint-axis form used to present Algorithm 1, let
 
-To run the temporal alignment (the use of soft-DTW) only: `python3 main.py --Nway 10 --topkk 3 --dataset MSRAction3D`
+```text
+D[n, t, u] = d_base(query_view[n, t], support[u])
+```
 
-To run the JEANIE: `python3 mainJEANIE.py --Nway 10 --topkk 3 --dataset MSRAction3D`
+with shape
 
+```text
+[K, T, U]
+```
 
-## 4. Pre-trained models for smaller datasets (on CPU)
+where:
 
-### 4.1 Some descriptions
+- `K` = number of query viewpoint states
+- `T` = number of query temporal blocks
+- `U` = number of support temporal blocks
 
-We provide some sample pre-trained models. 
+JEANIE initializes every possible viewpoint:
 
-- MSRAction3D: Nway = 10, topkk = 3
-- 3DActionPairs: Nway = 6, topkk = 2
-- UWA3DActivity: Nway = 15, topkk = 5
+```text
+R[n, 0, 0] = D[n, 0, 0]
+```
 
-All evaluation uses the same setting: adam optimizer, video block length = 8 and overlap frame per block = 4, degrees for the SSGC is 6, alpha for SSGC is set to 0.7, viewing angles = [-pi / 180, 0, pi / 180], without the use of transformer.
+and recursively uses the predecessor set
 
-For more details, please refer to our JEANIE paper.
+```text
+i ∈ {-eta, ..., +eta}
+(j, k) ∈ {(0,1), (1,0), (1,1)}
+```
 
-### 4.2 One-shot performance on sample datasets
+so that
 
-**The experimental results reported here are without the use of hyperopt, and we simply set the viewing angles between -1 and 1. We use Euler angles for the viewpoint augmentation in the following table.**
+```text
+R[n,t,u] =
+    D[n,t,u]
+    + SoftMin_gamma(
+        R[n-i, t-j, u-k]
+      ).
+```
 
-Note that M and S in the table represents the frame counts per temporal block and stride step, respectively. For more views mentioned in the table, we set the viewing angles between -2 and 2.
+Out-of-range states are treated as `+inf`.
 
-The use of soft-DTW is to only align the temporal information, whereas the use of JEANIE is to jointly align the temporal and viewpoint information. More details please refer to our paper.
+The final distance is
 
-|   | MSRAction3D | 3DActionPairs | UWA3DActivity | Model provided|
-| ------------- | :---: | :---: | :---: | :---: |
-| soft-DTW (M = 2, S = 1)  |  77.51 |  79.44 |  40.35 | Yes |
-| soft-DTW (M = 8, S = 4)  | 72.66  |  77.78 |  42.40 | Yes |
-| JEANIE (M = 2, S = 1)  | 80.28 | - | - | Yes|
-| JEANIE (M = 8, S = 4)  |  73.70 |  82.78 |  42.11 | Yes |
-| JEANIE (M = 8, S = 2) | 75.78 |  78.33 | 40.94 | Yes |
-| JEANIE (M = 10, S = 2) |  - |  - |  43.57 | Yes|
-| JEANIE (M = 12, S = 2) |  - |  81.67 |  - | No |
-| JEANIE (M = 15, S = 5) |  - |  82.22 | -  | Yes|
+```text
+SoftMin_gamma(R[:, T-1, U-1]).
+```
 
-#### Acknowledgement
-Thanks to the implementation of [soft-DTW](https://github.com/Maghoumi/pytorch-softdtw-cuda).
+This is the core of Algorithm 1.
+
+### Two viewpoint axes
+
+We describe the complete viewpoint representation as a `K × K'`
+viewpoint grid. The repository therefore also provides:
+
+```text
+D[k1, k2, t, u]    # shape [K1, K2, T, U]
+```
+
+and the corresponding direct two-axis extension:
+
+```python
+jeanie_2d_from_cost(...)
+```
+
+with independent viewpoint shifts along both axes.
+
+---
+
+## FVM
+
+FVM is the baseline in Eq. (13).
+
+For every temporal pair `(t,u)`, FVM first performs a SoftMin over the
+viewpoint indices independently:
+
+```text
+C[t,u] = SoftMin_gamma(viewpoint_costs[t,u])
+```
+
+and then runs soft-DTW on `C`.
+
+This deliberately allows viewpoint selection to change freely from one
+temporal alignment step to another.
+
+The repository provides explicit wrappers for:
+
+```python
+fvm_1d_from_cost(...)
+fvm_2d_from_cost(...)
+```
+
+It also supports query-only viewpoint tensors through:
+
+```python
+fvm_query_only_1d(...)
+fvm_query_only_2d(...)
+```
+
+The full FVM layouts are:
+
+```text
+1-D viewpoints:
+D.shape = [K_query, K_support, T, U]
+
+2-D viewpoints:
+D.shape = [Kq1, Kq2, Ks1, Ks2, T, U]
+```
+
+For the common query-only special cases:
+
+```text
+1-D: D.shape = [K, T, U]
+2-D: D.shape = [K1, K2, T, U]
+```
+
+---
+
+## Installation
+
+The code uses Python-3.7-compatible syntax. Install a PyTorch release compatible with your local Python version.
+
+Install PyTorch and the test dependency:
+
+```bash
+pip install torch pytest
+```
+
+For an editable local install:
+
+```bash
+pip install -e .
+```
+
+No CUDA, Numba, compiled extensions, or external repository code is required.
+
+---
+
+## Very small example
+
+From the repository root:
+
+```bash
+python examples/mini_demo.py
+```
+
+You can also run:
+
+```bash
+python -m examples.mini_demo
+```
+
+The demo uses a tiny synthetic sequence. It is lightweight so
+that the core API is easy to inspect before plugging in a real skeleton
+encoder.
+
+The core usage is:
+
+```python
+from jeanie import (
+    euclidean_cost,
+    jeanie_1d_from_cost,
+    fvm_query_only_1d,
+)
+
+# query_features:  [K, T, D]
+# support_features:[U, D]
+
+D = euclidean_cost(query_features, support_features)
+
+d_jeanie = jeanie_1d_from_cost(
+    D,
+    gamma=0.1,
+    max_shift=1,
+)
+
+d_fvm = fvm_query_only_1d(
+    D,
+    gamma=0.1,
+)
+```
+
+For the full one-axis FVM case, where both query and support have viewpoint
+states, use `fvm_1d_from_cost` with cost shape `[K_query, K_support, T, U]`.
+For two viewpoint axes, use `fvm_2d_from_cost` with cost shape
+`[Kq1, Kq2, Ks1, Ks2, T, U]`.
+
+Both outputs remain differentiable with respect to the input features.
+
+---
+
+## Using real 3D skeletons
+
+A simple downstream pipeline is:
+
+```text
+3D skeleton sequence
+        │
+        ├── temporal blocking
+        │
+        ├── viewpoint simulation
+        │
+        ├── feature encoder
+        │
+        ▼
+query features  [K, T, D]
+support features[U, D]
+        │
+        ▼
+base-distance tensor D
+        │
+        ├───────────────┐
+        ▼               ▼
+    JEANIE             FVM
+```
+
+The alignment module does **not** require a particular skeleton encoder.
+
+For example, if a skeleton block has `J` joints:
+
+```python
+# [K, T, J, 3] -> [K, T, 3J]
+query_features = query_blocks.reshape(K, T, 3 * J)
+
+# [U, J, 3] -> [U, 3J]
+support_features = support_blocks.reshape(U, 3 * J)
+```
+
+and then:
+
+```python
+D = euclidean_cost(query_features, support_features)
+distance = jeanie_1d_from_cost(D, gamma=0.1, max_shift=1)
+```
+
+In a learned model, `query_features` and `support_features` can instead be
+outputs of a GNN, MLP, transformer, or any other differentiable encoder.
+
+---
+
+## Differentiability
+
+The dynamic programs are written without in-place modification of
+autograd-tracked tensors.
+
+Therefore this works:
+
+```python
+D = some_differentiable_distance(...)
+distance = jeanie_1d_from_cost(D, gamma=0.1, max_shift=1)
+
+loss = distance
+loss.backward()
+```
+
+FVM is differentiable in the same way.
+
+The tests include PyTorch `gradcheck` and explicit backward checks.
+
+---
+
+## Verification
+
+The tests are separate from the demo.
+
+Run:
+
+```bash
+pytest -q
+```
+
+The test suite checks the mathematics rather than only checking that the
+functions execute:
+
+1. JEANIE 1-D dynamic programming is compared with explicit enumeration of
+   every valid joint temporal-viewpoint path on tiny problems.
+2. Soft-DTW is compared with explicit enumeration of every valid temporal
+   path.
+3. FVM is compared with explicit Eq. (13) viewpoint SoftMin followed by
+   explicit temporal-path enumeration.
+4. JEANIE 2-D is compared with explicit enumeration of every valid
+   two-viewpoint path on tiny problems.
+5. JEANIE and FVM pass PyTorch `gradcheck`.
+6. Explicit backward passes produce finite gradients.
+7. Boundary and degenerate cases are tested.
+
+The brute-force checks are limited to tiny tensors because their
+runtime grows exponentially. They are correctness tests, not the algorithm
+used for normal downstream tasks.
+
+---
+
+## Computational note
+
+The DP is implemented in plain PyTorch/Python loops. This is appropriate as a
+reference implementation and for small experiments, but it is not intended
+to replace highly optimized GPU/CUDA kernels for large-scale training.
+
+For large downstream workloads, the reference implementation can serve as a
+clear specification against which an optimized implementation can be tested.
+
+---
+
+## Soft-min can be negative
+
+JEANIE and FVM use a soft minimum of the form
+
+```text
+SoftMin_gamma(x) =
+    -gamma * log(sum(exp(-x / gamma))).
+```
+
+As with soft-DTW, the resulting value can be below the minimum individual
+cost because of the entropy/smoothing term. A negative raw value is therefore
+not, by itself, an implementation error.
+
+---
+
+## Citation
+
+If this implementation is useful in your work, please cite the JEANIE paper:
+
+```bibtex
+@article{wang2024meet,
+  title   = {Meet JEANIE: a Similarity Measure for 3D Skeleton Sequences
+             via Temporal-Viewpoint Alignment},
+  author  = {Wang, Lei and Liu, Jun and Zheng, Liang and Gedeon, Tom and
+             Koniusz, Piotr},
+  journal = {International Journal of Computer Vision},
+  year    = {2024},
+  volume  = {132},
+  pages   = {4091--4122},
+  doi     = {10.1007/s11263-024-02070-2}
+}
+```
