@@ -274,58 +274,6 @@ outputs of a GNN, MLP, transformer, or any other differentiable encoder.
 
 ---
 
-## Differentiability
-
-The dynamic programs are written without in-place modification of
-autograd-tracked tensors.
-
-Therefore this works:
-
-```python
-D = some_differentiable_distance(...)
-distance = jeanie_1d_from_cost(D, gamma=0.1, max_shift=1)
-
-loss = distance
-loss.backward()
-```
-
-FVM is differentiable in the same way.
-
-The tests include PyTorch `gradcheck` and explicit backward checks.
-
----
-
-## Verification
-
-The tests are separate from the demo.
-
-Run:
-
-```bash
-pytest -q
-```
-
-The test suite checks the mathematics rather than only checking that the
-functions execute:
-
-1. JEANIE 1-D dynamic programming is compared with explicit enumeration of
-   every valid joint temporal-viewpoint path on tiny problems.
-2. Soft-DTW is compared with explicit enumeration of every valid temporal
-   path.
-3. FVM is compared with explicit Eq. (13) viewpoint SoftMin followed by
-   explicit temporal-path enumeration.
-4. JEANIE 2-D is compared with explicit enumeration of every valid
-   two-viewpoint path on tiny problems.
-5. JEANIE and FVM pass PyTorch `gradcheck`.
-6. Explicit backward passes produce finite gradients.
-7. Boundary and degenerate cases are tested.
-
-The brute-force checks are limited to tiny tensors because their
-runtime grows exponentially. They are correctness tests, not the algorithm
-used for normal downstream tasks.
-
----
-
 ## Computational note
 
 The DP is implemented in plain PyTorch/Python loops. This is appropriate as a
