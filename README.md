@@ -2,7 +2,7 @@
 
 ---
 
-## What is included
+*Note: The code has been refactored and optimized with GPT for clarity, readability, maintainability, and ease of reuse.*
 
 ```text
 jeanie_reference/
