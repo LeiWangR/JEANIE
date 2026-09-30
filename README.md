@@ -360,14 +360,13 @@ If this implementation is useful in your work, please cite the JEANIE paper:
 
 ```bibtex
 @article{wang2024meet,
-  title   = {Meet JEANIE: a Similarity Measure for 3D Skeleton Sequences
-             via Temporal-Viewpoint Alignment},
-  author  = {Wang, Lei and Liu, Jun and Zheng, Liang and Gedeon, Tom and
-             Koniusz, Piotr},
-  journal = {International Journal of Computer Vision},
-  year    = {2024},
-  volume  = {132},
-  pages   = {4091--4122},
-  doi     = {10.1007/s11263-024-02070-2}
+  title={Meet jeanie: a similarity measure for 3d skeleton sequences via temporal-viewpoint alignment},
+  author={Wang, Lei and Liu, Jun and Zheng, Liang and Gedeon, Tom and Koniusz, Piotr},
+  journal={International Journal of Computer Vision},
+  volume={132},
+  number={9},
+  pages={4091--4122},
+  year={2024},
+  publisher={Springer}
 }
 ```
