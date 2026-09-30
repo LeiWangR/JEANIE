@@ -2,10 +2,8 @@
 
 ---
 
-*Note: The code has been refactored and optimized with GPT for clarity, readability, maintainability, and ease of reuse.*
-
 ```text
-jeanie_reference/
+JEANIE/
 ├── jeanie/
 │   ├── __init__.py
 │   ├── alignment.py       # JEANIE + soft-DTW
@@ -27,6 +25,8 @@ jeanie_2d_from_cost(...)
 fvm_1d_from_cost(...)
 fvm_2d_from_cost(...)
 ```
+
+*Note: The code has been refactored and optimized with GPT for clarity, readability, maintainability, and ease of reuse.*
 
 ---
 
