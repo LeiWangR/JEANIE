@@ -1,7 +1,5 @@
 # JEANIE
 
----
-
 ```text
 JEANIE/
 ├── jeanie/
