@@ -22,7 +22,7 @@ def euclidean_cost(
         raise ValueError("query/support feature dimensions do not match")
 
     difference = query[:, :, None, :] - support[None, None, :, :]
-    return torch.sqrt(difference.pow(2).sum(dim=-1))
+    return torch.linalg.vector_norm(difference, dim=-1)
 
 
 def squared_euclidean_cost(

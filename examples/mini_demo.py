@@ -58,7 +58,7 @@ def main():
     support = make_tiny_motion(torch.linspace(0, 1, 6))
 
     # Query: 5 temporal blocks, viewed from a different angle.
-    query = rotate_y(make_tiny_motion(torch.linspace(0, 1, 5)), 20.0)
+    query = make_tiny_motion(torch.linspace(0, 1, 5))
     query = query + 0.005 * torch.randn_like(query)
 
     # Simulate three query viewpoints.
