@@ -314,3 +314,14 @@ If this implementation is useful in your work, please cite the JEANIE paper:
   publisher={Springer}
 }
 ```
+
+```bibtex
+@inproceedings{wang2022temporal,
+  title={Temporal-viewpoint transportation plan for skeletal few-shot action recognition},
+  author={Wang, Lei and Koniusz, Piotr},
+  booktitle={Asian Conference on Computer Vision},
+  pages={307--326},
+  year={2022},
+  organization={Springer}
+}
+```
