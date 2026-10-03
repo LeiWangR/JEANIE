@@ -10,6 +10,8 @@ JEANIE/
 ├── examples/
 │   └── mini_demo.py       # very small runnable example
 ├── tests/
+│   ├── conftest.py
+│   ├── test_distances.py
 │   └── test_core.py       # correctness + gradient tests
 ├── README.md
 └── requirements.txt
